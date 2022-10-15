@@ -1,41 +1,41 @@
-local xsl = {}
-
-xsl["tm|tmatch"] = "xsl:template[match mode]"
-xsl["tn|tname"] = "xsl:template[name]"
-xsl["call"] = "xsl:call-template[name]"
-xsl["ap"] = "xsl:apply-templates[select mode]"
-xsl["api"] = "xsl:apply-imports"
-xsl["imp"] = "xsl:import[href]"
-xsl["inc"] = "xsl:include[href]"
-xsl["ch"] = "xsl:choose"
-xsl["wh|xsl:when"] = "xsl:when[test]"
-xsl["ot"] = "xsl:otherwise"
-xsl["if"] = "xsl:if[test]"
-xsl["par"] = "xsl:param[name]"
-xsl["pare"] = "xsl:param[name select]"
-xsl["var"] = "xsl:variable[name]"
-xsl["vare"] = "xsl:variable[name select]"
-xsl["wp"] = "xsl:with-param[name select]"
-xsl["key"] = "xsl:key[name match use]"
-xsl["elem"] = "xsl:element[name]"
-xsl["attr"] = "xsl:attribute[name]"
-xsl["attrs"] = "xsl:attribute-set[name]"
-xsl["cp"] = "xsl:copy[select]"
-xsl["co"] = "xsl:copy-of[select]"
-xsl["val"] = "xsl:value-of[select]"
-xsl["for|each"] = "xsl:for-each[select]"
-xsl["tex"] = "xsl:text"
-xsl["com"] = "xsl:comment"
-xsl["msg"] = "xsl:message[terminate=no]"
-xsl["fall"] = "xsl:fallback"
-xsl["num"] = "xsl:number[value]"
-xsl["nam"] = "namespace-alias[stylesheet-prefix result-prefix]"
-xsl["pres"] = "xsl:preserve-space[elements]"
-xsl["strip"] = "xsl:strip-space[elements]"
-xsl["proc"] = "xsl:processing-instruction[name]"
-xsl["sort"] = "xsl:sort[select order]"
-xsl["choose"] = "xsl:choose>xsl:when+xsl:otherwise"
-xsl["xsl"] = "!!!+xsl:stylesheet[version=1.0 xmlns:xsl=http://www.w3.org/1999/XSL/Transform]>{\n|}"
-xsl["!!!"] = "{<?xml version=\"1.0\" encoding=\"UTF-8\"?>}"
+local xsl = {
+    ["tm|tmatch"] = "xsl:template[match mode]",
+    ["tn|tname"] = "xsl:template[name]",
+    ["call"] = "xsl:call-template[name]",
+    ["ap"] = "xsl:apply-templates[select mode]",
+    ["api"] = "xsl:apply-imports",
+    ["imp"] = "xsl:import[href]",
+    ["inc"] = "xsl:include[href]",
+    ["ch"] = "xsl:choose",
+    ["wh|xsl:when"] = "xsl:when[test]",
+    ["ot"] = "xsl:otherwise",
+    ["if"] = "xsl:if[test]",
+    ["par"] = "xsl:param[name]",
+    ["pare"] = "xsl:param[name select]",
+    ["var"] = "xsl:variable[name]",
+    ["vare"] = "xsl:variable[name select]",
+    ["wp"] = "xsl:with-param[name select]",
+    ["key"] = "xsl:key[name match use]",
+    ["elem"] = "xsl:element[name]",
+    ["attr"] = "xsl:attribute[name]",
+    ["attrs"] = "xsl:attribute-set[name]",
+    ["cp"] = "xsl:copy[select]",
+    ["co"] = "xsl:copy-of[select]",
+    ["val"] = "xsl:value-of[select]",
+    ["for|each"] = "xsl:for-each[select]",
+    ["tex"] = "xsl:text",
+    ["com"] = "xsl:comment",
+    ["msg"] = "xsl:message[terminate=no]",
+    ["fall"] = "xsl:fallback",
+    ["num"] = "xsl:number[value]",
+    ["nam"] = "namespace-alias[stylesheet-prefix result-prefix]",
+    ["pres"] = "xsl:preserve-space[elements]",
+    ["strip"] = "xsl:strip-space[elements]",
+    ["proc"] = "xsl:processing-instruction[name]",
+    ["sort"] = "xsl:sort[select order]",
+    ["choose"] = "xsl:choose>xsl:when+xsl:otherwise",
+    ["xsl"] = "!!!+xsl:stylesheet[version=1.0 xmlns:xsl=http://www.w3.org/1999/XSL/Transform]>{\n|}",
+    ["!!!"] = "{<?xml version=\"1.0\" encoding=\"UTF-8\"?>}"
+}
 
 return xsl

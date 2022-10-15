@@ -1,10 +1,9 @@
-local variables = {}
-
-variables["lang"] = "en"
-variables["locale"] = "en-US"
-variables["charset"] = "UTF-8"
-variables["indentation"] = "\t"
-variables["newline"] = "\n"
+local variables = {
+    ["lang"] = "en",
+    ["locale"] = "en-US",
+    ["charset"] = "UTF-8",
+    ["indentation"] = "\t",
+    ["newline"] = "\n"
+}
 
 return variables
-

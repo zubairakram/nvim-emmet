@@ -1,5 +1,6 @@
-local pug = {}
+local pug = {
+    ["!!!"] = "{doctype html}"
+}
 
-pug["!!!"] = "{doctype html}"
 
 return pug

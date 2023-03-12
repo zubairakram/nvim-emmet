@@ -1,10 +1,3 @@
-local html = require("snippets.html")
-local css = require("snippets.css")
+local utils = require("scanner_utils")
 
-
-local function expand_tag(tag)
-    return string.format("<%s></%s>", tag, tostring(tag))
-end
-
-
-print(expand_tag("h1"))
+print(assert(utils.is_number(3)))

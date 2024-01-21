@@ -3,7 +3,7 @@ local variables = {
     ["locale"] = "en-US",
     ["charset"] = "UTF-8",
     ["indentation"] = "\t",
-    ["newline"] = "\n"
+    ["newline"] = "\n",
 }
 
 return variables

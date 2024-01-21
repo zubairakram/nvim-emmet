@@ -1,144 +1,204 @@
-local markup_snippets = require("snippets.html")
 local pug_snippets = require("snippets.pug")
-local stylesheet_snippets = require("snippets.css")
+local markup_snippets = require("snippets.html")
 local variables = require("snippets.variables")
+local stylesheet_snippets = require("snippets.css")
 local xsl_snippets = require("snippets.xsl")
 
-
 DEFAULT_SYNTAXES = {
-    ['markup'] = 'html',
-    ['stylesheet'] = 'css'
+    ["markup"] = "html",
+    ["stylesheet"] = "css",
 }
 -- Default syntaxes for abbreviation types
 
 SYNTAXES = {
-    ['markup'] = { 'html', 'xml', 'xsl', 'jsx', 'js', 'pug', 'slim', 'haml', 'vue', 'svelte' },
-    ['stylesheet'] = { 'css', 'sass', 'scss', 'less', 'sss', 'stylus' }
+    ["markup"] = { "html", "xml", "xsl", "jsx", "js", "pug", "slim", "haml", "vue", "svelte" },
+    ["stylesheet"] = { "css", "sass", "scss", "less", "sss", "stylus" },
 }
 -- List of all known syntaxes
 
 DEFAULT_OPTIONS = {
-    ['inlineElements'] = { 'a', 'abbr', 'acronym', 'applet', 'b', 'basefont', 'bdo',
-        'big', 'br', 'button', 'cite', 'code', 'del', 'dfn', 'em', 'font', 'i',
-        'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'map', 'object', 'q',
-        's', 'samp', 'select', 'small', 'span', 'strike', 'strong', 'sub', 'sup',
-        'textarea', 'tt', 'u', 'var'
+    ["inlineElements"] = {
+        "a",
+        "abbr",
+        "acronym",
+        "applet",
+        "b",
+        "basefont",
+        "bdo",
+        "big",
+        "br",
+        "button",
+        "cite",
+        "code",
+        "del",
+        "dfn",
+        "em",
+        "font",
+        "i",
+        "iframe",
+        "img",
+        "input",
+        "ins",
+        "kbd",
+        "label",
+        "map",
+        "object",
+        "q",
+        "s",
+        "samp",
+        "select",
+        "small",
+        "span",
+        "strike",
+        "strong",
+        "sub",
+        "sup",
+        "textarea",
+        "tt",
+        "u",
+        "var",
     },
-    ['output.indent'] = '\t',
-    ['output.baseIndent'] = '',
-    ['output.newline'] = '\n',
-    ['output.tagCase'] = '',
-    ['output.attributeCase'] = '',
-    ['output.attributeQuotes'] = 'double',
-    ['output.format'] = true,
-    ['output.formatLeafNode'] = false,
-    ['output.formatSkip'] = 'html',
-    ['output.formatForce'] = 'body',
-    ['output.inlineBreak'] = 3,
-    ['output.compactBoolean'] = false,
-    ['output.booleanAttributes'] = { 'contenteditable', 'seamless', 'async', 'autofocus',
-        'autoplay', 'checked', 'controls', 'defer', 'disabled', 'formnovalidate',
-        'hidden', 'ismap', 'loop', 'multiple', 'muted', 'novalidate', 'readonly',
-        'required', 'reversed', 'selected', 'typemustmatch'
+    ["output.indent"] = "\t",
+    ["output.baseIndent"] = "",
+    ["output.newline"] = "\n",
+    ["output.tagCase"] = "",
+    ["output.attributeCase"] = "",
+    ["output.attributeQuotes"] = "double",
+    ["output.format"] = true,
+    ["output.formatLeafNode"] = false,
+    ["output.formatSkip"] = "html",
+    ["output.formatForce"] = "body",
+    ["output.inlineBreak"] = 3,
+    ["output.compactBoolean"] = false,
+    ["output.booleanAttributes"] = {
+        "contenteditable",
+        "seamless",
+        "async",
+        "autofocus",
+        "autoplay",
+        "checked",
+        "controls",
+        "defer",
+        "disabled",
+        "formnovalidate",
+        "hidden",
+        "ismap",
+        "loop",
+        "multiple",
+        "muted",
+        "novalidate",
+        "readonly",
+        "required",
+        "reversed",
+        "selected",
+        "typemustmatch",
     },
-    ['output.reverseAttributes'] = false,
-    ['output.selfClosingStyle'] = 'html',
-    ['output.field'] = "", -- lambda index, placeholder, **kwargs: placeholder,
-    ['output.text'] = "",  -- lambda text, **kwargs: text,
-    ['markup.href'] = true,
-    ['comment.enabled'] = false,
-    ['comment.trigger'] = { 'id', 'class' },
-    ['comment.before'] = '',
-    ['comment.after'] = '\n<!-- /[#ID][.CLASS] -->',
-    ['bem.enabled'] = false,
-    ['bem.element'] = '__',
-    ['bem.modifier'] = '_',
-    ['jsx.enabled'] = false,
-    ['stylesheet.keywords'] = { 'auto', 'inherit', 'unset', 'none' },
-    ['stylesheet.unitless'] = { 'z-index', 'line-height', 'opacity', 'font-weight', 'zoom', 'flex', 'flex-grow',
-        'flex-shrink' },
-    ['stylesheet.shortHex'] = true,
-    ['stylesheet.between'] = ': ',
-    ['stylesheet.after'] = ';',
-    ['stylesheet.intUnit'] = 'px',
-    ['stylesheet.floatUnit'] = 'em',
-    ['stylesheet.unitAliases'] = { ['e'] = 'em',['p'] = '%',['x'] = 'ex',['r'] = 'rem' },
-    ['stylesheet.json'] = false,
-    ['stylesheet.jsonDoubleQuotes'] = false,
-    ['stylesheet.fuzzySearchMinScore'] = 0,
-    ['stylesheet.skipUnmatched'] = true,
+    ["output.reverseAttributes"] = false,
+    ["output.selfClosingStyle"] = "html",
+    ["output.field"] = "", -- lambda index, placeholder, **kwargs: placeholder,
+    ["output.text"] = "", -- lambda text, **kwargs: text,
+    ["markup.href"] = true,
+    ["comment.enabled"] = false,
+    ["comment.trigger"] = { "id", "class" },
+    ["comment.before"] = "",
+    ["comment.after"] = "\n<!-- /[#ID][.CLASS] -->",
+    ["bem.enabled"] = false,
+    ["bem.element"] = "__",
+    ["bem.modifier"] = "_",
+    ["jsx.enabled"] = false,
+    ["stylesheet.keywords"] = { "auto", "inherit", "unset", "none" },
+    ["stylesheet.unitless"] = {
+        "z-index",
+        "line-height",
+        "opacity",
+        "font-weight",
+        "zoom",
+        "flex",
+        "flex-grow",
+        "flex-shrink",
+    },
+    ["stylesheet.shortHex"] = true,
+    ["stylesheet.between"] = ": ",
+    ["stylesheet.after"] = ";",
+    ["stylesheet.intUnit"] = "px",
+    ["stylesheet.floatUnit"] = "em",
+    ["stylesheet.unitAliases"] = { ["e"] = "em", ["p"] = "%", ["x"] = "ex", ["r"] = "rem" },
+    ["stylesheet.json"] = false,
+    ["stylesheet.jsonDoubleQuotes"] = false,
+    ["stylesheet.fuzzySearchMinScore"] = 0,
+    ["stylesheet.skipUnmatched"] = true,
 }
 
 DEFAULT_CONFIG = {
-    ['type'] = 'markup',
-    ['syntax'] = 'html',
-    ['variables'] = variables,
-    ['snippets'] = {},
-    ['options'] = DEFAULT_OPTIONS
+    ["type"] = "markup",
+    ["syntax"] = "html",
+    ["variables"] = variables,
+    ["snippets"] = {},
+    ["options"] = DEFAULT_OPTIONS,
 }
 
 SYNTAX_CONFIG = {
-    ['markup'] = {
-        ['snippets'] = markup_snippets,
+    ["markup"] = {
+        ["snippets"] = markup_snippets,
     },
-    ['xhtml'] = {
-        ['options'] = {
-            ['output.selfClosingStyle'] = 'xhtml'
-        }
+    ["xhtml"] = {
+        ["options"] = {
+            ["output.selfClosingStyle"] = "xhtml",
+        },
     },
-    ['xml'] = {
-        ['options'] = {
-            ['output.selfClosingStyle'] = 'xml'
-        }
+    ["xml"] = {
+        ["options"] = {
+            ["output.selfClosingStyle"] = "xml",
+        },
     },
-    ['xsl'] = {
-        ['snippets'] = xsl_snippets,
-        ['options'] = {
-            ['output.selfClosingStyle'] = 'xml'
-        }
+    ["xsl"] = {
+        ["snippets"] = xsl_snippets,
+        ["options"] = {
+            ["output.selfClosingStyle"] = "xml",
+        },
     },
-    ['jsx'] = {
-        ['options'] = {
-            ['jsx.enabled'] = true,
-            ['markup.attributes'] = {
-                ['class'] = 'className',
-                ['class*'] = 'styleName',
-                ['for'] = 'htmlFor'
+    ["jsx"] = {
+        ["options"] = {
+            ["jsx.enabled"] = true,
+            ["markup.attributes"] = {
+                ["class"] = "className",
+                ["class*"] = "styleName",
+                ["for"] = "htmlFor",
             },
-            ['markup.valuePrefix'] = {
-                ['class*'] = 'styles'
-            }
-        }
+            ["markup.valuePrefix"] = {
+                ["class*"] = "styles",
+            },
+        },
     },
-    ['vue'] = {
-        ['options'] = {
-            ['markup.attributes'] = {
-                ['class*'] = ':class',
-            }
-        }
+    ["vue"] = {
+        ["options"] = {
+            ["markup.attributes"] = {
+                ["class*"] = ":class",
+            },
+        },
     },
-    ['svelte'] = {
-        ['options'] = {
-            ['jsx.enabled'] = true
-        }
+    ["svelte"] = {
+        ["options"] = {
+            ["jsx.enabled"] = true,
+        },
     },
-    ['pug'] = {
-        ['snippets'] = pug_snippets
+    ["pug"] = {
+        ["snippets"] = pug_snippets,
     },
-    ['stylesheet'] = {
-        ['snippets'] = stylesheet_snippets
+    ["stylesheet"] = {
+        ["snippets"] = stylesheet_snippets,
     },
-    ['sass'] = {
-        ['options'] = {
-            ['stylesheet.after'] = ''
-        }
+    ["sass"] = {
+        ["options"] = {
+            ["stylesheet.after"] = "",
+        },
     },
-    ['stylus'] = {
-        ['options'] = {
-            ['stylesheet.between'] = ' ',
-            ['stylesheet.after'] = '',
-        }
-    }
+    ["stylus"] = {
+        ["options"] = {
+            ["stylesheet.between"] = " ",
+            ["stylesheet.after"] = "",
+        },
+    },
 }
 
 -- class Config:
@@ -165,7 +225,20 @@ SYNTAX_CONFIG = {
 --             return self.user_config.get(key)
 --
 --         return None
---
+Config = {
+    user_config = {},
+    global_config = {},
+    syntax_type = {},
+    syntax = {},
+    contaxt = {},
+    variables = {},
+    snippets = {},
+    options = {},
+    cache = {},
+}
+
+function Config:get() end
+
 --
 -- def merged_data(syntax_type: str, syntax: str, key: str, user_config: dict, global_config: dict={}):
 --     empty = {}
@@ -184,3 +257,7 @@ SYNTAX_CONFIG = {
 --
 --     return result
 --
+
+local function merged_data(syntax_type, syntax, key, user_config, global_config) end
+
+return Config

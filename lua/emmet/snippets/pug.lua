@@ -1,4 +1,4 @@
 local pug = {
-    ["!!!"] = "{doctype html}"
+    ["!!!"] = "{doctype html}",
 }
 return pug

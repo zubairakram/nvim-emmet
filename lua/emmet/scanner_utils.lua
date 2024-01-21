@@ -7,7 +7,7 @@ end
 
 function M.is_alpha(ch)
     --check either the given code is an alphabet
-    return 'a' <= ch <= 'z' or 'A' <= ch <= 'Z'
+    return "a" <= ch <= "z" or "A" <= ch <= "Z"
 end
 
 function M.is_alpha_numeric(ch)
@@ -16,7 +16,7 @@ function M.is_alpha_numeric(ch)
 end
 
 function M.is_alpha_word(ch)
-    return ch == '_' or M.is_alpha(ch)
+    return ch == "_" or M.is_alpha(ch)
 end
 
 function M.is_alpha_numeric_word(ch)
@@ -25,12 +25,12 @@ end
 
 function M.is_white_space(ch)
     -- check either given character code is a white-space character
-    return ch == ' ' or ch == '\t'
+    return ch == " " or ch == "\t"
 end
 
 function M.is_space(ch)
     -- check if given character code is a quote character
-    return M.is_white_space(ch) or ch == '\n' or ch == '\r'
+    return M.is_white_space(ch) or ch == "\n" or ch == "\r"
 end
 
 function M.is_quote(ch)
@@ -52,12 +52,12 @@ function M.eat_quoted(scanner, options)
                 scanner.start = start
                 return true
             end
-            scanner.eat(options['escape'])
+            scanner.eat(options["escape"])
             scanner.pos = scanner.pos + 1
         end
         scanner.pos = start
 
-        if options['throws'] then
+        if options["throws"] then
             scanner.error("Unable to consume quoted string")
         end
     end
@@ -66,8 +66,8 @@ end
 
 function M.create_options(opt)
     local options = {
-        ["escape"] = '\\',
-        ["throws"] = false
+        ["escape"] = "\\",
+        ["throws"] = false,
     }
 
     for k, v in ipairs(opt) do
@@ -76,4 +76,4 @@ function M.create_options(opt)
 
     return options
 end
-return M;
+return M
